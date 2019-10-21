@@ -1,0 +1,45 @@
+@import "typography.import"
+
+pixel-text-outline(color)
+  value = ()
+  for x in -1 0 1
+    for y in -1 0 1
+      if abs(x) isnt abs(y)
+        push(value, "%srem %srem 0 %s" % (x y color))
+      else
+        unless x is 0 and y is 0
+          push(value, "%srem %srem 0 %s" % (x y rgba(color, alpha(color) * 0.4)))
+
+  text-shadow unquote(join(',', value))
+
+pixel-text-emboss(mainColor, topColor)
+  value = ()
+  for x in -1 1 0
+    for y in -1 0 1
+      if y is -1 and x is 0
+        push(value, "%srem %srem 0 %s" % (x y topColor))
+      else
+        push(value, "%srem %srem 0 %s" % (x y+1 mainColor))
+
+  text-shadow unquote(join(',', value))
+
+pixel-image-rendering()
+  image-rendering -moz-crisp-edges            // Firefox
+  image-rendering -o-crisp-edges              // Opera
+  image-rendering pixelated                   // Webkit
+  image-rendering crisp-edges                 // CSS3
+  -ms-interpolation-mode nearest-neighbor
+
+hyphens()
+  hyphens arguments
+  -webkit-hyphens arguments
+
+user-select()
+  user-select arguments
+  -webkit-user-select arguments
+
+position()
+  if arguments[0] is sticky
+    position -webkit-sticky arguments[1..length(arguments)]
+
+  position arguments
