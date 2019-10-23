@@ -1,19 +1,38 @@
+html {
+  font-size: 3px;
+}
 html,
 body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  font-size: 3px;
+}
+* {
+  box-sizing: border-box;
+}
+.ui {
+  font-size: 16px;
+  margin: 30px;
+}
+.ui label {
+  margin-right: 20px;
+}
+.paper {
+  position: relative;
+  width: 297mm;
+  height: 210mm;
+  margin: 30px;
+  border: 1px dashed #000;
   image-rendering: -moz-crisp-edges;
   image-rendering: -o-crisp-edges;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   -ms-interpolation-mode: nearest-neighbor;
 }
-* {
-  box-sizing: border-box;
-}
-.sign {
+.paper .sign {
+  position: relative;
+  top: calc(20mm + 12rem);
+  left: 25mm;
+  width: 270rem;
   font-family: "Kyrou 9 Spelkollektivet";
   font-size: 8rem;
   -webkit-font-smoothing: none;
@@ -22,16 +41,60 @@ body {
   text-shadow: #000 1rem 1rem;
   color: #fff;
 }
-.sign .title {
+.paper .sign.centered {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.paper .sign .title {
+  position: absolute;
+  top: -12rem;
+  left: 26rem;
+  z-index: 1;
+  padding: 2rem 5rem;
   text-transform: uppercase;
   background: #be4a2f;
 }
-.sign .message {
+.paper .sign .message {
+  position: relative;
+  min-height: 74rem;
+  padding: 15rem 72rem 10rem 12rem;
   background: #d77643;
+  line-height: 16rem;
 }
-.sign .title,
-.sign .message {
+.paper .sign .title::before,
+.paper .sign .message::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -4rem;
+  right: -4rem;
+  top: -4rem;
+  bottom: -4rem;
   border: 3rem solid #f00;
-  border-image: url("border.png");
-  border-image-width: 45px;
+  border-image-source: url("border.png");
+  border-image-width: 5rem;
+  border-image-slice: 5;
+}
+.paper .sign .icon {
+  position: absolute;
+  right: 12rem;
+  top: 15rem;
+  width: 48rem;
+  height: 48rem;
+  background: #ead4aa;
+}
+.instructions {
+  font-size: 16px;
+  margin: 30px;
+}
+@media print {
+  .ui,
+  .instructions {
+    display: none;
+  }
+  .paper {
+    border: none;
+    margin: 0;
+  }
 }

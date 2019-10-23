@@ -1,31 +1,94 @@
 @import "../style/style.import.styl"
 
 html
+  font-size 3px
+
+html
 body
   margin 0
   padding 0
-  width 100%
-  font-size 3px
-  pixel-image-rendering()
 
 *
   box-sizing border-box
 
-.sign
-  kyrou-9()
-  font-weight bold
-  text-shadow black 1rem 1rem
-  color white
+.ui
+  font-size 16px
+  margin 30px
 
-  .title
-    text-transform uppercase
-    background #be4a2f
+  label
+    margin-right 20px
 
-  .message
-    background #d77643
+.paper
+  position relative
+  width 297mm
+  height 210mm
+  margin 30px
+  border 1px dashed black
+  pixel-image-rendering()
 
-  .title
-  .message
-    border 3rem solid red
-    border-image url("border.png")
-    border-image-width 45px
+  .sign
+    position relative
+    top calc(20mm + 12rem)
+    left 25mm
+    width 270rem
+    kyrou-9()
+    font-weight bold
+    text-shadow black 1rem 1rem
+    color white
+
+    &.centered
+      top 50%
+      left 50%
+      transform translate(-50%, -50%)
+
+    .title
+      position absolute
+      top -12rem
+      left 26rem
+      z-index 1
+      padding 2rem 5rem
+      text-transform uppercase
+      background #be4a2f
+
+    .message
+      position relative
+      min-height 74rem
+      padding 15rem 72rem 10rem 12rem
+      background #d77643
+      line-height 16rem
+
+    .title
+    .message
+      &::before
+        content ''
+        display  block
+        position absolute
+        left -4rem
+        right -4rem
+        top -4rem
+        bottom -4rem
+        border 3rem solid red
+        border-image-source url("border.png")
+        border-image-width 5rem
+        border-image-slice 5
+
+    .icon
+      position absolute
+      right 12rem
+      top 15rem
+      width 48rem
+      height 48rem
+      background #ead4aa
+
+.instructions
+  font-size 16px
+  margin 30px
+
+@media print
+  .ui
+  .instructions
+    display none
+
+  .paper
+    border none
+    margin 0
